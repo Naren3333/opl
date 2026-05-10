@@ -2,7 +2,7 @@
   "name": "opl-language",
   "displayName": "OPL Language",
   "description": "Language support, LSP intelligence, and debugger integration for OPL (One Piece Language).",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "Naren-SMU",
   "icon": "images/icon.png",
   "license": "MIT",
