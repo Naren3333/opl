@@ -124,40 +124,46 @@ vsce publish
 
 ## Documentation
 
+- `docs/index.md`
+- `docs/installation.md`
 - `docs/quickstart.md`
-- `docs/language-basics.md`
-- `docs/standard-library.md`
-- `docs/examples.md`
+- `docs/syntax.md`
+- `docs/functions.md`
+- `docs/models.md`
+- `docs/collections.md`
+- `docs/modules-imports.md`
+- `docs/bytecode-vm.md`
+- `docs/debugger.md`
+- `docs/vscode-extension.md`
+- `docs/playground.md`
 
 ## Website And Playground
 
-The public website and documentation live in `docs/` for GitHub Pages.
+The public website and documentation are built with MkDocs and Material for MkDocs.
 
-The landing page is:
-
-```text
-docs/index.html
-```
-
-The static playground is Pages-compatible. It lets users edit and copy OPL examples, then run them locally with:
+Install the documentation tools:
 
 ```powershell
-python -m pip install oplang
-opl run app.opl
+python -m pip install -r docs/requirements.txt
 ```
+
+Preview locally:
+
+```powershell
+mkdocs serve
+```
+
+The hosted documentation includes a static playground page with copyable OPL examples. GitHub Pages is static hosting, so code execution happens locally through the `opl` CLI.
 
 ## GitHub Pages Deployment
 
-To publish the website from this repository:
+To publish the MkDocs site to GitHub Pages:
 
-1. Open the GitHub repository settings.
-2. Go to `Pages`.
-3. Set the source to `Deploy from a branch`.
-4. Select the default branch.
-5. Set the folder to `/docs`.
-6. Save and wait for GitHub Pages to publish.
+```powershell
+mkdocs gh-deploy
+```
 
-All website assets use relative paths so the site can be served from a repository Pages URL.
+This builds the site and pushes the generated output to the `gh-pages` branch. The MkDocs configuration lives in `mkdocs.yml`, and documentation source files live in `docs/`.
 
 ## PyPI Release
 
