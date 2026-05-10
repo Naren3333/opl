@@ -1,0 +1,13 @@
+{
+  "iconDefinitions": {
+    "_opl_file": {
+      "iconPath": "./opl-file.svg"
+    }
+  },
+  "fileExtensions": {
+    "opl": "_opl_file"
+  },
+  "languageIds": {
+    "opl": "_opl_file"
+  }
+}

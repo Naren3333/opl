@@ -1,4 +1,5 @@
 const path = require("path");
+const childProcess = require("child_process");
 const vscode = require("vscode");
 const {
   LanguageClient,
@@ -7,6 +8,7 @@ const {
 
 let client;
 let debugFactory;
+let oplTerminal;
 
 function activate(context) {
   const workspaceRoot = path.dirname(context.extensionPath);
@@ -53,6 +55,18 @@ function activate(context) {
   context.subscriptions.push(
     vscode.debug.registerDebugAdapterDescriptorFactory("opl", debugFactory)
   );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("opl.runCurrentFile", runCurrentFile),
+    vscode.commands.registerCommand("opl.debugCurrentFile", debugCurrentFile),
+    vscode.commands.registerCommand("opl.runFile", runCurrentFile),
+    vscode.commands.registerCommand("opl.debugFile", debugCurrentFile),
+    vscode.window.onDidCloseTerminal((terminal) => {
+      if (terminal === oplTerminal) {
+        oplTerminal = undefined;
+      }
+    })
+  );
 }
 
 function deactivate() {
@@ -66,6 +80,101 @@ module.exports = {
   activate,
   deactivate
 };
+
+async function runCurrentFile(resource) {
+  const uri = await resolveOplFile(resource);
+  if (!uri) {
+    return;
+  }
+
+  if (!(await ensureOplCli())) {
+    return;
+  }
+
+  const terminal = getOplTerminal();
+  terminal.show(true);
+  terminal.sendText(`opl run ${quoteShellPath(uri.fsPath)}`);
+}
+
+async function debugCurrentFile(resource) {
+  const uri = await resolveOplFile(resource);
+  if (!uri) {
+    return;
+  }
+
+  if (!(await ensureOplCli())) {
+    return;
+  }
+
+  const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri);
+  const started = await vscode.debug.startDebugging(workspaceFolder, {
+    type: "opl",
+    request: "launch",
+    name: "Debug OPL File",
+    program: uri.fsPath
+  });
+
+  if (!started) {
+    vscode.window.showErrorMessage("Unable to start the OPL debugger.");
+  }
+}
+
+async function resolveOplFile(resource) {
+  const uri = resource && resource.scheme === "file"
+    ? resource
+    : activeOplEditorUri();
+
+  if (!uri || path.extname(uri.fsPath).toLowerCase() !== ".opl") {
+    vscode.window.showErrorMessage("Open an .opl file first.");
+    return undefined;
+  }
+
+  const editor = vscode.window.activeTextEditor;
+  if (editor && editor.document.uri.toString() === uri.toString() && editor.document.isDirty) {
+    const saved = await editor.document.save();
+    if (!saved) {
+      vscode.window.showErrorMessage("Save the current OPL file before running it.");
+      return undefined;
+    }
+  }
+
+  return uri;
+}
+
+function activeOplEditorUri() {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor || editor.document.isUntitled) {
+    return undefined;
+  }
+  if (editor.document.languageId === "opl" || path.extname(editor.document.fileName).toLowerCase() === ".opl") {
+    return editor.document.uri;
+  }
+  return undefined;
+}
+
+function ensureOplCli() {
+  return new Promise((resolve) => {
+    childProcess.execFile("opl", ["--version"], { windowsHide: true }, (error) => {
+      if (error) {
+        vscode.window.showErrorMessage("OPL CLI not found. Install with: pip install oplang");
+        resolve(false);
+        return;
+      }
+      resolve(true);
+    });
+  });
+}
+
+function getOplTerminal() {
+  if (!oplTerminal) {
+    oplTerminal = vscode.window.createTerminal({ name: "OPL" });
+  }
+  return oplTerminal;
+}
+
+function quoteShellPath(filePath) {
+  return `"${filePath.replace(/"/g, '\\"')}"`;
+}
 
 class OPLDebugAdapterFactory {
   constructor(workspaceRoot, python, pythonPath) {

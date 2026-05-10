@@ -2,7 +2,7 @@
   "name": "opl-language",
   "displayName": "OPL Language",
   "description": "Language support, LSP intelligence, and debugger integration for OPL (One Piece Language).",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "Naren-SMU",
   "icon": "images/icon.png",
   "license": "MIT",
@@ -34,7 +34,11 @@
   },
   "activationEvents": [
     "onLanguage:opl",
-    "workspaceContains:**/*.opl"
+    "workspaceContains:**/*.opl",
+    "onCommand:opl.runCurrentFile",
+    "onCommand:opl.debugCurrentFile",
+    "onCommand:opl.runFile",
+    "onCommand:opl.debugFile"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -48,9 +52,80 @@
         "extensions": [
           ".opl"
         ],
+        "icon": {
+          "light": "./icons/opl-file.svg",
+          "dark": "./icons/opl-file-dark.svg"
+        },
         "configuration": "./language-configuration.json"
       }
     ],
+    "iconThemes": [
+      {
+        "id": "opl-file-icons",
+        "label": "OPL File Icons",
+        "path": "./icons/opl-icon-theme.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "opl.runCurrentFile",
+        "title": "OPL: Run Current File",
+        "category": "OPL",
+        "icon": "$(play)"
+      },
+      {
+        "command": "opl.debugCurrentFile",
+        "title": "OPL: Debug Current File",
+        "category": "OPL",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "opl.runFile",
+        "title": "Run OPL File",
+        "category": "OPL",
+        "icon": "$(play)"
+      },
+      {
+        "command": "opl.debugFile",
+        "title": "Debug OPL File",
+        "category": "OPL",
+        "icon": "$(debug-alt)"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "opl.runCurrentFile"
+        },
+        {
+          "command": "opl.debugCurrentFile"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "opl.runCurrentFile",
+          "when": "resourceLangId == opl",
+          "group": "navigation@1"
+        },
+        {
+          "command": "opl.debugCurrentFile",
+          "when": "resourceLangId == opl",
+          "group": "navigation@2"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "opl.runFile",
+          "when": "resourceExtname == .opl",
+          "group": "navigation@1"
+        },
+        {
+          "command": "opl.debugFile",
+          "when": "resourceExtname == .opl",
+          "group": "navigation@2"
+        }
+      ]
+    },
     "grammars": [
       {
         "language": "opl",

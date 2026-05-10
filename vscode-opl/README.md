@@ -29,12 +29,15 @@ opl debug file.opl
 ## Features
 
 - Syntax highlighting for `.opl` files
+- File icon support for `.opl` files
 - Bracket auto-closing for `{}`, `[]`, and `()`
 - Indentation support for functions, models, loops, and conditionals
 - Snippets for common OPL patterns
 - Autocomplete for functions, models, variables, methods, and standard library symbols
 - Diagnostics for syntax and semantic issues
 - Hover, go-to-definition, document symbols, and workspace symbols
+- Editor title buttons for running and debugging the current `.opl` file
+- Explorer context menu actions for running and debugging `.opl` files
 - VSCode debugger integration with breakpoints, stepping, stack frames, and variables
 
 ## File Extension
@@ -82,6 +85,8 @@ Use the default launch configuration:
 ```
 
 Set breakpoints in `.opl` files, press F5, step through execution, and inspect variables in the VSCode debugger panels.
+
+You can also use the editor title Debug button or right-click a `.opl` file in the Explorer and choose `Debug OPL File`.
 
 ## Requirements
 
