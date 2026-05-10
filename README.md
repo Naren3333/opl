@@ -131,19 +131,33 @@ vsce publish
 
 ## Website And Playground
 
-The static website and local playground live in `website/`.
+The public website and documentation live in `docs/` for GitHub Pages.
 
-Start the local playground server:
-
-```powershell
-python website/playground_server.py --port 8787
-```
-
-Open:
+The landing page is:
 
 ```text
-http://127.0.0.1:8787
+docs/index.html
 ```
+
+The static playground is Pages-compatible. It lets users edit and copy OPL examples, then run them locally with:
+
+```powershell
+python -m pip install oplang
+opl run app.opl
+```
+
+## GitHub Pages Deployment
+
+To publish the website from this repository:
+
+1. Open the GitHub repository settings.
+2. Go to `Pages`.
+3. Set the source to `Deploy from a branch`.
+4. Select the default branch.
+5. Set the folder to `/docs`.
+6. Save and wait for GitHub Pages to publish.
+
+All website assets use relative paths so the site can be served from a repository Pages URL.
 
 ## PyPI Release
 

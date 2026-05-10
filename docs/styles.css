@@ -233,6 +233,29 @@ pre code {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.link-row a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff8e9;
+  color: var(--ink);
+  font-weight: 750;
+}
+
+.link-row a:hover {
+  border-color: var(--accent);
+}
+
 .example-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -294,6 +317,12 @@ textarea {
   color: #ffd8d4;
 }
 
+.playground-note {
+  margin-top: 18px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
 .footer {
   padding: 28px clamp(20px, 5vw, 64px);
   color: var(--muted);
@@ -329,4 +358,3 @@ textarea {
     font-size: 40px;
   }
 }
-

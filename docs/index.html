@@ -16,7 +16,8 @@
       <a href="#install">Install</a>
       <a href="#examples">Examples</a>
       <a href="#playground">Playground</a>
-      <a href="/docs/README.md">Docs</a>
+      <a href="README.md">Docs</a>
+      <a href="https://github.com/Naren3333/opl">GitHub</a>
     </nav>
   </header>
 
@@ -24,57 +25,56 @@
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">One Piece Language</p>
-        <h1>A small scripting language with a real runtime.</h1>
+        <h1>A lightweight scripting language with real tooling.</h1>
         <p class="lede">
-          OPL blends readable pirate syntax with a serious toolchain: an AST interpreter,
-          bytecode VM, closures, models, collections, debugger, standard library, and VSCode support.
+          OPL combines concise pirate syntax with a production-style toolchain:
+          an AST interpreter, bytecode VM, closures, models, collections,
+          diagnostics, debugger integration, a standard library, and VSCode support.
         </p>
         <div class="actions">
-          <a class="button primary" href="#playground">Try OPL</a>
-          <a class="button" href="#install">Install</a>
+          <a class="button primary" href="#playground">Try the sample</a>
+          <a class="button" href="#install">Install OPL</a>
         </div>
       </div>
-      <pre class="hero-code"><code>fn counter() {
-    let n = 0
+      <pre class="hero-code"><code>bounty x = 5
+say x + 1
 
-    fn next() {
-        n = n + 1
-        return n
-    }
+dfruit add(a, b):
+    return a + b
 
-    return next
-}
-
-let c = counter()
-print(c())
-print(c())</code></pre>
+say add(2, 3)</code></pre>
     </section>
 
     <section class="features" aria-label="Key features">
       <article>
-        <h2>Expressive Core</h2>
+        <h2>Language Core</h2>
         <p>Functions, closures, models, lists, maps, imports, and a compact standard library.</p>
       </article>
       <article>
-        <h2>Two Runtimes</h2>
-        <p>Run through the AST interpreter or opt into the stack-based bytecode VM.</p>
+        <h2>Runtime</h2>
+        <p>Run through the AST interpreter or opt into the stack-based bytecode VM and `.oplb` files.</p>
       </article>
       <article>
-        <h2>Developer Tools</h2>
-        <p>CLI checks, formatting, REPL, bytecode inspection, debugger, LSP, and VSCode support.</p>
+        <h2>Editor Tools</h2>
+        <p>Use diagnostics, autocomplete, file icons, run/debug buttons, LSP support, and DAP debugging in VSCode.</p>
       </article>
     </section>
 
     <section id="install" class="band">
       <div class="section-heading">
         <p class="eyebrow">Install</p>
-        <h2>Run your first `.opl` file in under two minutes.</h2>
+        <h2>Install from PyPI and run your first `.opl` file.</h2>
       </div>
       <div class="command-grid">
         <pre><code>python -m pip install oplang</code></pre>
         <pre><code>opl run app.opl</code></pre>
         <pre><code>opl build app.opl
 opl run app.oplb --vm</code></pre>
+      </div>
+      <div class="link-row">
+        <a href="https://pypi.org/project/oplang/">PyPI package</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=Naren-SMU.opl-language">VSCode Marketplace</a>
+        <a href="https://github.com/Naren3333/opl">GitHub repository</a>
       </div>
     </section>
 
@@ -114,7 +114,7 @@ for member in crew:
     <section id="playground" class="playground">
       <div class="section-heading">
         <p class="eyebrow">Playground</p>
-        <h2>Run OPL locally from the browser.</h2>
+        <h2>Try the syntax, then run it locally with the OPL CLI.</h2>
       </div>
       <div class="playground-grid">
         <label class="editor-panel">
@@ -123,11 +123,16 @@ for member in crew:
         </label>
         <div class="output-panel">
           <div class="output-header">
-            <span>Output</span>
-            <button id="run" type="button">Run</button>
+            <span>Expected output</span>
+            <button id="copy" type="button">Copy code</button>
           </div>
           <pre id="output" aria-live="polite"></pre>
         </div>
+      </div>
+      <div class="playground-note">
+        GitHub Pages is static hosting, so this page does not execute code on a server.
+        Install OPL with `python -m pip install oplang`, save the sample as `app.opl`,
+        and run `opl run app.opl`.
       </div>
     </section>
   </main>

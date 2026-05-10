@@ -4,10 +4,10 @@ OPL, the One Piece Language, is a lightweight scripting language with a pirate-f
 
 Start here:
 
+- [Home](index.html)
 - [Quickstart](quickstart.md)
 - [Language Basics](language-basics.md)
 - [Standard Library](standard-library.md)
 - [Examples](examples.md)
 
 The official source extension is `.opl`.
-
