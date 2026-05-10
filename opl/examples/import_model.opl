@@ -1,0 +1,8 @@
+﻿import pirates
+
+let luffy = Pirate("Luffy")
+
+luffy.greet()
+print(luffy.name)
+
+

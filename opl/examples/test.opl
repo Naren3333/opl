@@ -1,0 +1,6 @@
+﻿bounty Luffy = 10
+
+if Luffy > 5:
+    say "Yonko level"
+
+

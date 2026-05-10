@@ -1,0 +1,11 @@
+﻿model Pirate {
+    fn spawn(name) {
+        captain.name = name
+    }
+
+    fn greet() {
+        print(captain.name)
+    }
+}
+
+

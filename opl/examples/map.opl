@@ -1,0 +1,7 @@
+﻿bounty pirate = {
+    "name": "Luffy"
+}
+
+say pirate["name"]
+
+

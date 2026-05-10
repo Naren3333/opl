@@ -1,0 +1,13 @@
+﻿model Pirate:
+    dfruit spawn(name):
+        captain.name = name
+
+    dfruit greet():
+        say captain.name
+
+bounty luffy = Pirate("Luffy")
+
+luffy.greet()
+say luffy.name
+
+

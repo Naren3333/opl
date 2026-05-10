@@ -1,0 +1,7 @@
+﻿dfruit add(a, b):
+    return a + b
+
+bounty result = add(2, 3)
+say result
+
+

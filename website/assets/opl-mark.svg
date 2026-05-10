@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="OPL mark">
+  <rect width="96" height="96" rx="18" fill="#102033"/>
+  <circle cx="48" cy="48" r="29" fill="#f6f0df"/>
+  <circle cx="48" cy="48" r="22" fill="none" stroke="#102033" stroke-width="4"/>
+  <path d="M48 18 L55 46 L78 48 L55 54 L48 78 L41 54 L18 48 L41 46 Z" fill="#d84f3f"/>
+  <circle cx="48" cy="48" r="5" fill="#102033"/>
+</svg>
+

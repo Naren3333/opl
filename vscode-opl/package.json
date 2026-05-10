@@ -1,0 +1,100 @@
+{
+  "name": "opl-language",
+  "displayName": "OPL Language",
+  "description": "Language support, LSP intelligence, and debugger integration for OPL (One Piece Language).",
+  "version": "1.0.1",
+  "publisher": "opl",
+  "icon": "images/icon.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opl-lang/opl.git",
+    "directory": "vscode-opl"
+  },
+  "bugs": {
+    "url": "https://github.com/opl-lang/opl/issues"
+  },
+  "homepage": "https://github.com/opl-lang/opl#readme",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "opl",
+    "one piece language",
+    "pirate syntax",
+    "language server",
+    "debugger"
+  ],
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "activationEvents": [
+    "onLanguage:opl",
+    "workspaceContains:**/*.opl"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "opl",
+        "aliases": [
+          "OPL",
+          "One Piece Language"
+        ],
+        "extensions": [
+          ".opl"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "opl",
+        "scopeName": "source.opl",
+        "path": "./syntaxes/opl.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "opl",
+        "path": "./snippets/snippets.json"
+      }
+    ],
+    "debuggers": [
+      {
+        "type": "opl",
+        "label": "OPL Debugger",
+        "languages": [
+          "opl"
+        ],
+        "program": "./extension.js",
+        "configurationAttributes": {
+          "launch": {
+            "required": [
+              "program"
+            ],
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "Path to the OPL source or bytecode file.",
+                "default": "${file}"
+              }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "type": "opl",
+            "request": "launch",
+            "name": "Run OPL",
+            "program": "${file}"
+          }
+        ]
+      }
+    ]
+  }
+}

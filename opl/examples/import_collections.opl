@@ -1,0 +1,10 @@
+﻿import data
+
+let nums = get_nums()
+append(nums, 4)
+
+for item in nums {
+    print(item)
+}
+
+

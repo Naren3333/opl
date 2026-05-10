@@ -1,0 +1,35 @@
+{
+  "Function": {
+    "prefix": "dfruit",
+    "body": [
+      "dfruit ${1:name}(${2:args}):",
+      "    return ${3:value}"
+    ],
+    "description": "Create an OPL pirate-syntax function"
+  },
+  "Model": {
+    "prefix": "model",
+    "body": [
+      "model ${1:Name}:",
+      "    dfruit spawn(${2:args}):",
+      "        captain.${3:field} = ${2:args}"
+    ],
+    "description": "Create an OPL model with a spawn constructor"
+  },
+  "Loop": {
+    "prefix": "for",
+    "body": [
+      "for ${1:item} in ${2:items}:",
+      "    say ${1:item}"
+    ],
+    "description": "Create a for-in loop"
+  },
+  "If statement": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition}:",
+      "    say \"${2:true}\""
+    ],
+    "description": "Create an if statement"
+  }
+}

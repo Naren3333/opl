@@ -1,0 +1,111 @@
+﻿let visited0 = 1
+let visited1 = 0
+let visited2 = 0
+let visited3 = 0
+let visited4 = 0
+let visited5 = 0
+
+let frontier0 = 1
+let frontier1 = 0
+let frontier2 = 0
+let frontier3 = 0
+let frontier4 = 0
+let frontier5 = 0
+
+let next0 = 0
+let next1 = 0
+let next2 = 0
+let next3 = 0
+let next4 = 0
+let next5 = 0
+
+let remaining = 6
+
+while remaining > 0 {
+    if frontier0 == 1 {
+        print(0)
+        frontier0 = 0
+        remaining = remaining - 1
+
+        if visited1 == 0 {
+            visited1 = 1
+            next1 = 1
+        }
+
+        if visited2 == 0 {
+            visited2 = 1
+            next2 = 1
+        }
+    }
+
+    if frontier1 == 1 {
+        print(1)
+        frontier1 = 0
+        remaining = remaining - 1
+
+        if visited3 == 0 {
+            visited3 = 1
+            next3 = 1
+        }
+    }
+
+    if frontier2 == 1 {
+        print(2)
+        frontier2 = 0
+        remaining = remaining - 1
+
+        if visited3 == 0 {
+            visited3 = 1
+            next3 = 1
+        }
+
+        if visited4 == 0 {
+            visited4 = 1
+            next4 = 1
+        }
+    }
+
+    if frontier3 == 1 {
+        print(3)
+        frontier3 = 0
+        remaining = remaining - 1
+
+        if visited5 == 0 {
+            visited5 = 1
+            next5 = 1
+        }
+    }
+
+    if frontier4 == 1 {
+        print(4)
+        frontier4 = 0
+        remaining = remaining - 1
+
+        if visited5 == 0 {
+            visited5 = 1
+            next5 = 1
+        }
+    }
+
+    if frontier5 == 1 {
+        print(5)
+        frontier5 = 0
+        remaining = remaining - 1
+    }
+
+    frontier0 = next0
+    frontier1 = next1
+    frontier2 = next2
+    frontier3 = next3
+    frontier4 = next4
+    frontier5 = next5
+
+    next0 = 0
+    next1 = 0
+    next2 = 0
+    next3 = 0
+    next4 = 0
+    next5 = 0
+}
+
+

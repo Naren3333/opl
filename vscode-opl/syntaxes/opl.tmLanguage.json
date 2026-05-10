@@ -1,0 +1,151 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "OPL",
+  "scopeName": "source.opl",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#booleans" },
+    { "include": "#models" },
+    { "include": "#functions" },
+    { "include": "#core-keywords" },
+    { "include": "#pirate-keywords" },
+    { "include": "#method-calls" },
+    { "include": "#property-access" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.opl",
+          "match": "//.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.opl",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.opl",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.opl",
+          "match": "\\b\\d+(?:\\.\\d+)?\\b"
+        }
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.opl",
+          "match": "\\b(?:true|false)\\b"
+        }
+      ]
+    },
+    "core-keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.opl",
+          "match": "\\b(?:if|while|for|return|import)\\b"
+        },
+        {
+          "name": "storage.type.opl",
+          "match": "\\b(?:fn|model|let)\\b"
+        },
+        {
+          "name": "keyword.operator.word.opl",
+          "match": "\\bin\\b"
+        }
+      ]
+    },
+    "pirate-keywords": {
+      "patterns": [
+        {
+          "name": "storage.type.opl",
+          "match": "\\b(?:bounty|dfruit)\\b"
+        },
+        {
+          "name": "support.function.opl",
+          "match": "\\bsay\\b"
+        },
+        {
+          "name": "variable.language.self.opl",
+          "match": "\\bcaptain\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "meta.function.definition.opl",
+          "match": "\\b(?:fn|dfruit)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.opl"
+            }
+          }
+        }
+      ]
+    },
+    "models": {
+      "patterns": [
+        {
+          "name": "meta.model.definition.opl",
+          "match": "\\bmodel\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "entity.name.type.model.opl"
+            }
+          }
+        }
+      ]
+    },
+    "method-calls": {
+      "patterns": [
+        {
+          "name": "meta.method-call.opl",
+          "match": "\\.([A-Za-z_][A-Za-z0-9_]*)\\s*(?=\\()",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.method.opl"
+            }
+          }
+        }
+      ]
+    },
+    "property-access": {
+      "patterns": [
+        {
+          "name": "variable.other.property.opl",
+          "match": "\\.([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "variable.other.property.opl"
+            }
+          }
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.opl",
+          "match": "==|!=|<=|>=|[+\\-*/=<>]"
+        }
+      ]
+    }
+  }
+}
