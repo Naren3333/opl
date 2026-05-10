@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OPL - One Piece Language</title>
+  <link rel="icon" type="image/png" href="assets/opl-icon.png">
+  <link rel="apple-touch-icon" href="assets/opl-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="OPL home">
+      <img src="assets/opl-icon.png" alt="" width="34" height="34">
+      <span>OPL</span>
+    </a>
+    <nav class="nav">
+      <a href="#install">Install</a>
+      <a href="#examples">Examples</a>
+      <a href="#playground">Playground</a>
+      <a href="README.md">Docs</a>
+      <a href="https://github.com/Naren3333/opl">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">One Piece Language</p>
+        <h1>A lightweight scripting language with real tooling.</h1>
+        <p class="lede">
+          OPL combines concise pirate syntax with a production-style toolchain:
+          an AST interpreter, bytecode VM, closures, models, collections,
+          diagnostics, debugger integration, a standard library, and VSCode support.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#playground">Try the sample</a>
+          <a class="button" href="#install">Install OPL</a>
+        </div>
+      </div>
+      <pre class="hero-code"><code>bounty x = 5
+say x + 1
+
+dfruit add(a, b):
+    return a + b
+
+say add(2, 3)</code></pre>
+    </section>
+
+    <section class="features" aria-label="Key features">
+      <article>
+        <h2>Language Core</h2>
+        <p>Functions, closures, models, lists, maps, imports, and a compact standard library.</p>
+      </article>
+      <article>
+        <h2>Runtime</h2>
+        <p>Run through the AST interpreter or opt into the stack-based bytecode VM and `.oplb` files.</p>
+      </article>
+      <article>
+        <h2>Editor Tools</h2>
+        <p>Use diagnostics, autocomplete, file icons, run/debug buttons, LSP support, and DAP debugging in VSCode.</p>
+      </article>
+    </section>
+
+    <section id="install" class="band">
+      <div class="section-heading">
+        <p class="eyebrow">Install</p>
+        <h2>Install from PyPI and run your first `.opl` file.</h2>
+      </div>
+      <div class="command-grid">
+        <pre><code>python -m pip install oplang</code></pre>
+        <pre><code>opl run app.opl</code></pre>
+        <pre><code>opl build app.opl
+opl run app.oplb --vm</code></pre>
+      </div>
+      <div class="link-row">
+        <a href="https://pypi.org/project/oplang/">PyPI package</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=Naren-SMU.opl-language">VSCode Marketplace</a>
+        <a href="https://github.com/Naren3333/opl">GitHub repository</a>
+      </div>
+    </section>
+
+    <section id="examples" class="examples">
+      <div class="section-heading">
+        <p class="eyebrow">Examples</p>
+        <h2>Pirate syntax, real language behavior.</h2>
+      </div>
+      <div class="example-grid">
+        <article>
+          <h3>Functions</h3>
+          <pre><code>dfruit add(a, b):
+    return a + b
+
+say add(2, 3)</code></pre>
+        </article>
+        <article>
+          <h3>Models</h3>
+          <pre><code>model Pirate:
+    dfruit spawn(name):
+        captain.name = name
+
+    dfruit greet():
+        say captain.name</code></pre>
+        </article>
+        <article>
+          <h3>Collections</h3>
+          <pre><code>bounty crew = ["Luffy", "Zoro"]
+append(crew, "Nami")
+
+for member in crew:
+    say member</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section id="playground" class="playground">
+      <div class="section-heading">
+        <p class="eyebrow">Playground</p>
+        <h2>Try the syntax, then run it locally with the OPL CLI.</h2>
+      </div>
+      <div class="playground-grid">
+        <label class="editor-panel">
+          <span>Code</span>
+          <textarea id="code" spellcheck="false"></textarea>
+        </label>
+        <div class="output-panel">
+          <div class="output-header">
+            <span>Expected output</span>
+            <button id="copy" type="button">Copy code</button>
+          </div>
+          <pre id="output" aria-live="polite"></pre>
+        </div>
+      </div>
+      <div class="playground-note">
+        GitHub Pages is static hosting, so this page does not execute code on a server.
+        Install OPL with `python -m pip install oplang`, save the sample as `app.opl`,
+        and run `opl run app.opl`.
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>OPL uses `.opl` source files and `.oplb` compiled bytecode files.</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

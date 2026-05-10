@@ -7,8 +7,7 @@ __pycache__/
 .ruff_cache/
 build/
 dist/
-site/
-.mkdocs-build/
 *.egg-info/
 vscode-opl/node_modules/
 vscode-opl/*.vsix
+
