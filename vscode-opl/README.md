@@ -1,32 +1,49 @@
 # OPL Language Support
 
-VSCode support for OPL (One Piece Language), a lightweight programming language with pirate syntax, an AST interpreter, a bytecode VM, diagnostics, and debugger tooling.
+Professional VSCode support for OPL (One Piece Language), a lightweight programming language with pirate syntax, an AST interpreter, bytecode VM, diagnostics, and debugger tooling.
 
-Install the OPL command-line tools from PyPI:
+## Quickstart
+
+1. Install the OPL runtime:
 
 ```powershell
-pip install oplang
+python -m pip install oplang
+```
+
+2. Install this VSCode extension.
+
+3. Open any `.opl` file.
+
+4. Run from a terminal:
+
+```powershell
+opl run file.opl
+```
+
+5. Debug from VSCode with the included `Run OPL` launch configuration, or run:
+
+```powershell
+opl debug file.opl
 ```
 
 ## Features
 
 - Syntax highlighting for `.opl` files
 - Bracket auto-closing for `{}`, `[]`, and `()`
-- Indentation support for `fn`, `model`, `if`, `while`, and `for`
-- `//` line comments for editor ergonomics
+- Indentation support for functions, models, loops, and conditionals
 - Snippets for common OPL patterns
-- LSP-powered hover, definitions, outline, workspace symbols, completions, and diagnostics
-- DAP debugger integration for `opl debug` style workflows inside VSCode
+- Autocomplete for functions, models, variables, methods, and standard library symbols
+- Diagnostics for syntax and semantic issues
+- Hover, go-to-definition, document symbols, and workspace symbols
+- VSCode debugger integration with breakpoints, stepping, stack frames, and variables
 
 ## File Extension
 
-OPL uses a single official file extension:
+OPL uses one official source file extension:
 
 ```text
 .opl
 ```
-
-The extension associates editor support with `.opl` files only.
 
 ## Example
 
@@ -51,42 +68,9 @@ let result = add(2, 3)
 print(result)
 ```
 
-Run a file with the OPL CLI:
+## Debugging
 
-```powershell
-opl run file.opl
-```
-
-Debug a file with the OPL debugger:
-
-```powershell
-opl debug file.opl
-```
-
-## Snippets
-
-- `dfruit` creates a function
-- `model` creates a model with a `spawn` constructor
-- `for` creates a for-in loop
-- `if` creates an if statement
-
-## Language Server
-
-The extension launches `opl-lsp`, a lightweight Language Server Protocol implementation that reuses the real OPL parser and diagnostics engine.
-
-The same diagnostics are used by:
-
-```powershell
-opl check file.opl
-```
-
-Set `OPL_PYTHON` if the extension should use a specific Python executable. Set `OPL_LSP_PATH` to point at a custom `server.py` while developing the language server.
-
-The first server is intentionally small, but it already follows standard JSON-RPC over stdio so it can grow into a fuller OPL language server later.
-
-## Debugger
-
-Create or use a launch configuration:
+Use the default launch configuration:
 
 ```json
 {
@@ -97,26 +81,39 @@ Create or use a launch configuration:
 }
 ```
 
-Set breakpoints in `.opl` files, press F5, step through bytecode execution, and inspect variables from the VSCode debugger panels.
+Set breakpoints in `.opl` files, press F5, step through execution, and inspect variables in the VSCode debugger panels.
 
-Set `OPL_DAP_PATH` to point at a custom debug adapter server while developing debugger support.
+## Requirements
 
-## Marketplace Packaging
-
-Install the VSCode extension packaging tool:
+This extension expects the OPL runtime tools to be available through Python:
 
 ```powershell
-npm install -g @vscode/vsce
+python -m pip install oplang
 ```
 
-Build a local VSIX:
+The runtime provides:
+
+- `opl`
+- `opl-lsp`
+- `opl-dap`
+
+If VSCode cannot find your Python installation, set `OPL_PYTHON` to the Python executable that has `oplang` installed.
+
+## Snippets
+
+- `dfruit` creates a function
+- `model` creates a model with a `spawn` constructor
+- `for` creates a for-in loop
+- `if` creates an if statement
+
+## Extension Development
+
+For maintainers working on the extension internals:
+
+- `OPL_LSP_PATH` can point to a local language server script.
+- `OPL_DAP_PATH` can point to a local debug adapter script.
+- Publish a patch release only after reviewing the Marketplace README:
 
 ```powershell
-vsce package
-```
-
-Publish when ready:
-
-```powershell
-vsce publish
+vsce publish patch
 ```
