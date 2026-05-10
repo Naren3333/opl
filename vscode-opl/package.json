@@ -8,13 +8,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/opl-lang/opl.git",
+    "url": "https://github.com/Naren3333/opl.git",
     "directory": "vscode-opl"
   },
   "bugs": {
-    "url": "https://github.com/opl-lang/opl/issues"
+    "url": "https://github.com/Naren3333/opl/issues"
   },
-  "homepage": "https://github.com/opl-lang/opl#readme",
+  "homepage": "https://github.com/Naren3333/opl#readme",
   "engines": {
     "vscode": "^1.85.0"
   },
